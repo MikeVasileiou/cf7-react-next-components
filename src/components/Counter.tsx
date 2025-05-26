@@ -19,7 +19,7 @@ const Counter = () => {
 
     return (
         <>
-            <div className="space-y-4 pt-12">
+            <div className="space-y-4 text-2xl pt-12">
                 <h1 className="text-center">Count is {count}</h1>
                 <div className="text-center">
                     <CounterButton onClick={increaseCount} label="increase"/>
