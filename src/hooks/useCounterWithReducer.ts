@@ -37,12 +37,12 @@ function reducer(state: CounterState, action:Action): CounterState {
                     time: getCurrentTime(),
                 }
                 :state;
-                case "RESET":
-                    return {
-                        count: 0,
-                        lastAction: "Reset",
-                        time: getCurrentTime(),
-                    }
+        case "RESET": return {
+            count: initialState.count,
+            lastAction: "Reset",
+            time:  getCurrentTime(),
+        };
+        default: return state;
     }
 }
 
