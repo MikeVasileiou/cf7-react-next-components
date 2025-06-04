@@ -4,46 +4,66 @@
 // import ArrowFunctionalComponentWithProps from "./components/ArrowFunctionalComponentWithProps.tsx";
 // import ArrowFunctionalComponentWithPropsType from "./components/ArrowFunctionalComponentWithPropsType.tsx";
 import Layout from "./components/Layout.tsx";
-import OnlineStatus from "./components/OnlineStatus.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 // import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
 // import Counter from "./components/Counter.tsx";
 // import NameChanger from "./components/NameChanger.tsx";
+// import { useEffect } from "react";
 // import CounterWithMoreStates from "./components/CounterWithMoreStates.tsx";
 // import CounterWithCustomHook from "./components/CounterWithCustomHook.tsx";
 // import CounterAdvanced from "./components/CounterAdvanced.tsx";
 // import CounterAdvancedWithCustomHook from "./components/CounterAdvancedWithCustomHook";
 // import CounterWithReducer from "./components/CounterWithReducer.tsx";
 // import Todo from "./components/Todo/Todo.tsx";
+// import OnlineStatus from "./components/OnlineStatus.tsx";
+import {BrowserRouter, Routes, Route} from "react-router";
+import HomePage from "./pages/HomePage.tsx";
+import NameChangerPage from "./pages/NameChangerPage.tsx";
 
 function App() {
 
+    // useEffect(() => {
+    //   const id: number = setInterval(() => console.log("tick"), 1000);
+    //   return () => clearInterval(id);
+    // }, []);
+
     return (
         <>
-            <Layout>
-                {/*<ClassComponent/>*/}
-                {/*<FunctionalComponent/>*/}
-                {/*<ArrowFunctionalComponent/>*/}
-                {/*<ArrowFunctionalComponentWithProps title="Is a Arrow Functional Component with Props!"/>*/}
-                {/*<ArrowFunctionalComponentWithPropsType*/}
-                {/*  title="Is a Arrow Functional Component with Props!"*/}
-                {/*  description="this is a description"*/}
-                {/*/>*/}
+            {/*<Layout>*/}
+            {/*<ClassComponent/>*/}
+            {/*<FunctionalComponent/>*/}
+            {/*<ArrowFunctionalComponent/>*/}
+            {/*<ArrowFunctionalComponentWithProps title="Is a Arrow Functional Component with Props!"/>*/}
+            {/*<ArrowFunctionalComponentWithPropsType*/}
+            {/*  title="Is a Arrow Functional Component with Props!"*/}
+            {/*  description="this is a description"*/}
+            {/*/>*/}
 
-                {/*<ClassComponentWithState/>*/}
-                {/*<FunctionalComponentWithState/>*/}
-                {/*<Counter/>*/}
-                {/*<NameChanger/>*/}
-                {/*<CounterWithMoreStates/>*/}
-                {/*<CounterAdvanced/>*/}
-                {/*<CounterWithCustomHook/>*/}
-                {/*<CounterAdvancedWithCustomHook/>*/}
+            {/*<ClassComponentWithState/>*/}
+            {/*<FunctionalComponentWithState/>*/}
+            {/*<Counter/>*/}
+            {/*<NameChanger/>*/}
+            {/*<CounterWithMoreStates/>*/}
+            {/*<CounterAdvanced/>*/}
+            {/*<CounterWithCustomHook/>*/}
+            {/*<CounterAdvancedWithCustomHook/>*/}
 
-                {/*<CounterWithReducer/>*/}
-                {/*<Todo/>*/}
-                <OnlineStatus/>
+            {/*<CounterWithReducer/>*/}
+            {/*<Todo/>*/}
 
-            </Layout>
+            {/*<OnlineStatus/>*/}
+
+            {/*</Layout>*/}
+
+            <BrowserRouter>
+                <Layout>
+                    <Routes>
+                        <Route path="/" element={<HomePage />}/>
+                        <Route path="name-changer" element={<NameChangerPage/>}/>
+                    </Routes>
+                </Layout>
+            </BrowserRouter>
+
         </>
     )
 }
