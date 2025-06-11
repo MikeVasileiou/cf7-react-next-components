@@ -17,16 +17,21 @@
 // import Todo from "./components/Todo/Todo.tsx";
 // import OnlineStatus from "./components/OnlineStatus.tsx";
 import {BrowserRouter, Routes, Route} from "react-router";
-import HomePage from "./pages/HomePage.tsx";
+// import HomePage from "./pages/HomePage.tsx";
 import NameChangerPage from "./pages/NameChangerPage.tsx";
 // import NameChanger from "./components/NameChanger.tsx";
 import OnlineStatusPage from "./pages/OnlineStatusPage.tsx";
 import UserPage from "./pages/UserPage.tsx";
 import RouterLayout from "./components/RouterLayout.tsx";
-import ExamplesPage from "./pages/ExamplesPage.tsx";
+// import ExamplesPage from "./pages/ExamplesPage.tsx";
 import RouterExamplesLayout from "./components/RouterExamplesLayout";
-import AutoRedirectPage from "./pages/AutoRedirtectPage.tsx";
+import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
+import FocusInput from "./components/FocusInput.tsx";
+import UncontrolledInput from "./components/UncontrolledInput.tsx";
+import ControlledInput from "./components/ControlledInput.tsx";
+import MultiFieldForm from "./components/MultiFieldForm.tsx";
+import ExamplesPage from "./pages/ExamplesPage.tsx";
 
 function App() {
 
@@ -67,7 +72,8 @@ function App() {
                 <Routes>
                     <Route element={<RouterLayout />}>
                         {/*<Route path="/" element={<HomePage />}/>*/}
-                        <Route index element={<HomePage />}/>
+                        {/*<Route index element={<HomePage />}/>*/}
+                        <Route index element={<MultiFieldForm/>}/>
                         <Route path="users/:userId" element={<UserPage />}/>
                         <Route path="users" element={<UserPage />}/>
                     </Route>
@@ -78,16 +84,16 @@ function App() {
                         <Route path="name-changer" element={<NameChangerPage/>}/>
                         <Route path="online-status" element={<OnlineStatusPage/>}/>
                         <Route path="auto-redirect" element={<AutoRedirectPage/>}/>
-
+                        <Route path="controlled-input" element={<ControlledInput />}/>
+                        <Route path="uncontrolled-input" element={<UncontrolledInput />}/>
+                        <Route path="focus-input" element={<FocusInput />}/>
                     </Route>
 
                     <Route path="users/:userId" element={<UserPage />}/>
                     <Route path="users" element={<UserPage />}/>
                     {/*<Route path="files/*" element={<FilePage/>}/>*/}
-                    <Route path="*" element={<NotFoundPage/>}/>
-                    PATH: https://example.com/users/125/name/nick
-                    QUERY: https://example.com/users?id=125&name=Nick
-                    https://www.skroutz.gr/c/3074/pagomixanes/f/891854_891908_1066530/trima-epagelmatiki-101-200.html?price_max=3200.0&price_min=1400.001
+                    <Route path="*"  element={<NotFoundPage/>}/>
+
                 </Routes>
             </BrowserRouter>
 
