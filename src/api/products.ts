@@ -75,6 +75,20 @@ export async function updateProduct(
     return await res.json();
 }
 
+export async function createProduct (
+    data: Omit<ProductType, "id">,
+): Promise<ProductType> {
+    console.log(data);
+    const res = await fetch(`${API_URL}tenants/${TENANT_ID}/products/`,{
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+    console.log(res);
+    if (!res.ok) throw new Error("Failed to create product");
+    return await res.json();
+}
+
 export async function deleteProduct(id: number): Promise<void> {
     const res = await fetch(`${API_URL}tenants/${TENANT_ID}/products/${id}`, {
         method: 'DELETE',

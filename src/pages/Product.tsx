@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useForm } from "react-hook-form";
@@ -7,6 +8,7 @@ import {
     type ProductType,
     productFormSchema,
     updateProduct,
+    createProduct
 } from "../api/products";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,10 +17,14 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
 
+type ProductModeProps = {
+    mode?: "edit" | "create";
+}
 
-const ProductEdit = () => {
+const ProductEdit = ({ mode }: ProductModeProps) => {
     const { productId } = useParams<{ productId: string }>();
     const navigate = useNavigate();
+    const isEdit = mode === "edit" || (!!productId && mode === "create");
 
     const {
         register,
@@ -44,7 +50,7 @@ const ProductEdit = () => {
 
 
     useEffect(() => {
-        if (productId) {
+        if (isEdit && productId) {
             getProduct(Number(productId))
                 .then((data) => {
                     const values = {
@@ -64,13 +70,16 @@ const ProductEdit = () => {
                     console.error("Error fetching product:", err);
                 })
         }
-    }, [productId, reset]);
+    }, [isEdit, productId, reset]);
 
     const onSubmit = async (data: Omit<ProductType, "id">) => {
         try {
-            if (productId) {
+            if (isEdit && productId) {
                 await updateProduct(Number(productId), data);
                 toast.success("Product updated!");
+            } else {
+                await createProduct(data);
+                toast.success("Product created!");
             }
             navigate("/products");
         } catch (error) {
@@ -80,7 +89,6 @@ const ProductEdit = () => {
         }
     };
 
-
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
@@ -88,7 +96,7 @@ const ProductEdit = () => {
             autoComplete="off"
         >
             <h1 className="text-xl font-bold mb-4">
-                Create New Product
+                {isEdit ? "Edit Product" : "Create New Product"}
             </h1>
             <div>
                 <Label htmlFor="name">Name</Label>
